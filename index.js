@@ -8,6 +8,7 @@ mem[-2] = 0
 mem[-3] = 0
 mem[-4] = 0
 mem[-5] = 0
+mem[-6] = 0
 var iptr = 0
 
 const interval = setInterval(() => {
@@ -19,10 +20,14 @@ const interval = setInterval(() => {
             case -3:
                 console.log(mem[-5])
                 iptr = mem[-6]
+                mem[-5] = 0
+                mem[-6] = 0
                 break
             case -4:
                 console.error(mem[-5])
                 iptr = mem[-6]
+                mem[-5] = 0
+                mem[-6] = 0
                 break
             default:
                 err(`invalid instruction pointer. jumped to ${iptr}.`)
@@ -32,11 +37,11 @@ const interval = setInterval(() => {
         var aptr = mem[iptr + 1],
             bptr = mem[iptr + 0],
             tgt = mem[iptr + 2]
-        if (!mem[aptr])
+        if (mem[aptr] === undefined)
             mem[aptr] = 0
-        if (!mem[bptr])
+        if (mem[bptr] === undefined)
             mem[bptr] = 0
-        if (!mem[tgt])
+        if (mem[tgt] === undefined)
             mem[tgt] = 0
 
         var a = mem[aptr],
@@ -46,7 +51,7 @@ const interval = setInterval(() => {
         if (result <= 0) iptr = tgt
         else iptr += 3
     }
-}, 1000)
+}, 100)
 
 function err(...msg) {
     console.error(...msg)

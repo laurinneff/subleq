@@ -1,0 +1,6 @@
+Copy a value from memory address (1) to memory address (2)
+9 (1) 11 (3) 3 store the inverse of (1) in (3)
+11 (3) 10 (2) 6 store the inverse of (3) in (1) (effectively copying (1) to (2))
+11 (3) 11 (3) -1 reset (3), then exit
+DATA
+100 (1) 0 (2) 0 (3)
