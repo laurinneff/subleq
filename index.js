@@ -51,7 +51,7 @@ const interval = setInterval(() => {
         if (result <= 0) iptr = tgt
         else iptr += 3
     }
-}, 100)
+}, 10)
 
 function err(...msg) {
     console.error(...msg)
