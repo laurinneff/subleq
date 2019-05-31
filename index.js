@@ -3,22 +3,26 @@ const code = fs.readFileSync('code.subleq').toString().split('\n').join(' ').spl
 var mem = code.filter((val, i, arr) => {
     return /^[\d\.-]+$/.test(val)
 }).map(x => +x)
-var negmem = [0, 0, 0, 0, 0, 0]
+mem[-1] = 0
+mem[-2] = 0
+mem[-3] = 0
+mem[-4] = 0
+mem[-5] = 0
 var iptr = 0
 
 const interval = setInterval(() => {
     if (iptr < 0) {
         switch (iptr) {
             case -1:
-                process.exit(negmem[1])
+                process.exit(mem[-2])
                 break
             case -3:
-                console.log(negmem[4])
-                iptr = negmem[5]
+                console.log(mem[-5])
+                iptr = mem[-6]
                 break
             case -4:
-                console.error(negmem[4])
-                iptr = negmem[5]
+                console.error(mem[-5])
+                iptr = mem[-6]
                 break
             default:
                 err(`invalid instruction pointer. jumped to ${iptr}.`)
@@ -34,35 +38,13 @@ const interval = setInterval(() => {
             mem[bptr] = 0
         if (!mem[tgt])
             mem[tgt] = 0
-        if (aptr >= 0 && bptr >= 0) {
-            var a = mem[aptr],
-                b = mem[bptr],
-                result = a - b
-            mem[aptr] = result
-            if (result <= 0) iptr = tgt
-            else iptr += 3
-        } else if (aptr >= 0 && bptr < 0) {
-            var a = mem[aptr],
-                b = negmem[Math.abs(bptr) - 1],
-                result = a - b
-            mem[aptr] = result
-            if (result <= 0) iptr = tgt
-            else iptr += 3
-        } else if (aptr < 0 && bptr >= 0) {
-            var a = negmem[Math.abs(aptr) - 1],
-                b = mem[bptr],
-                result = a - b
-            negmem[Math.abs(aptr) - 1] = result
-            if (result <= 0) iptr = tgt
-            else iptr += 3
-        } else if (aptr < 0 && bptr < 0) {
-            var a = negmem[Math.abs(aptr) - 1],
-                b = negmem[Math.abs(bptr) - 1],
-                result = a - b
-            negmem[Math.abs(aptr) - 1] = result
-            if (result <= 0) iptr = tgt
-            else iptr += 3
-        }
+
+        var a = mem[aptr],
+            b = mem[bptr],
+            result = a - b
+        mem[aptr] = result
+        if (result <= 0) iptr = tgt
+        else iptr += 3
     }
 }, 1000)
 
