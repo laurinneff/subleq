@@ -28,6 +28,12 @@ const interval = setInterval(() => {
         var aptr = mem[iptr + 1],
             bptr = mem[iptr + 0],
             tgt = mem[iptr + 2]
+        if (!mem[aptr])
+            mem[aptr] = 0
+        if (!mem[bptr])
+            mem[bptr] = 0
+        if (!mem[tgt])
+            mem[tgt] = 0
         if (aptr >= 0 && bptr >= 0) {
             var a = mem[aptr],
                 b = mem[bptr],

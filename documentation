@@ -8,4 +8,4 @@ Special features:
         Jump to address -1, -2 is the exit code
     Printing:
         Jump to address -3 to print the number in -5 to stdout
-        Jump to address -4 to print the number in -5 to stderr
+        Jump to address -4 to print -4 to print the number in -5 to stderr
