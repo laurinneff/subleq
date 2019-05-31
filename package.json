@@ -1,0 +1,11 @@
+{
+  "name": "subleq",
+  "version": "1.0.0",
+  "description": "a subleq emulator",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index"
+  },
+  "author": "Laurin Neff",
+  "license": "MIT"
+}

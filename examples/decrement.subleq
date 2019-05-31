@@ -1,0 +1,8 @@
+Decrement (1), then print it to stdout
+15 (1) 17 (3) 3 store inverse of (1) in (3)
+17 (3) -5 6 store inverse of (3) in [-5] (effectively copying (1) to [-5])
+16 (2) -5 9 subtract (2) from [-5]
+16 (2) -6 12 store inverse of (2) in [-6], to end the program after printing
+17 (3) 17 (3) -3 reinitialize (3), then call [-3]
+DATA
+100 (1) 1 (2) 0 (3)
